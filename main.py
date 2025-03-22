@@ -1,5 +1,6 @@
 from data import db_session
 from data.users import User
+from data.jobs import Job
 
 
 def main():
@@ -38,6 +39,13 @@ def main():
     user4.speciality = 'engineer'
     user4.address = 'module_12'
     user4.email = 'fedooor@mars.org'
+
+    job1 = Job()
+    job1.teamleader = 1
+    job1.job = 'deployment of residential modules 1 and 2'
+    job1.work_size = 15
+    job1.collaborators = 2, 3
+    job1.is_finished = False
 
 
 if __name__ == '__main__':
