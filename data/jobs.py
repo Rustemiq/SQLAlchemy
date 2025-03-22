@@ -10,6 +10,7 @@ class Job(SqlAlchemyBase):
                            primary_key=True, autoincrement=True)
     teamleader = sqlalchemy.Column(sqlalchemy.Integer,
                                    sqlalchemy.ForeignKey("users.id"))
+    user = sqlalchemy.orm.relationship('User')
     job = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     work_size = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     collaborators = sqlalchemy.Column(sqlalchemy.String, nullable=True)
