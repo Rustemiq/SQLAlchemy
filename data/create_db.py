@@ -7,6 +7,7 @@ db_sess = None
 def create_db():
     db_sess = get_sess()
     user1 = User()
+    user1.login = 'SRidley'
     user1.surname = 'Scott'
     user1.name = 'Ridley'
     user1.age = 21
@@ -17,6 +18,7 @@ def create_db():
     user1.id = 1
 
     user2 = User()
+    user2.login = 'Ivanov123'
     user2.surname = 'Ivanov'
     user2.name = 'Ivan'
     user2.age = 22
@@ -27,6 +29,7 @@ def create_db():
     user2.id = 2
 
     user3 = User()
+    user3.login = 'PPetrov123'
     user3.surname = 'Petrov'
     user3.name = 'Petr'
     user3.age = 25
@@ -37,6 +40,7 @@ def create_db():
     user3.id = 3
 
     user4 = User()
+    user3.login = 'fffedor'
     user4.surname = 'Fedorov'
     user4.name = 'Fedor'
     user4.age = 20
