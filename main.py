@@ -86,14 +86,24 @@ def add_job():
     return render_template('job_addition.html', title='Добавление работ', form=form)
 
 
-@app.route('/select_job', methods=['GET', 'POST'])
-def select_job():
+@app.route('/select_job_to_change', methods=['GET', 'POST'])
+def select_job_to_change():
     if not current_user.is_authenticated:
         available_jobs = []
     else:
         db_sess = db_session.create_session()
         available_jobs = db_sess.query(Job).filter(Job.creator == current_user.id | current_user.id == 1)
-    return render_template('job_selection.html', title='Добавление работ', jobs=available_jobs)
+    return render_template('job_selection.html', title='Выбор работы', jobs=available_jobs, mode='change')
+
+
+@app.route('/select_job_to_del', methods=['GET', 'POST'])
+def select_job_to_del():
+    if not current_user.is_authenticated:
+        available_jobs = []
+    else:
+        db_sess = db_session.create_session()
+        available_jobs = db_sess.query(Job).filter(Job.creator == current_user.id | current_user.id == 1)
+    return render_template('job_selection.html', title='Выбор работы', jobs=available_jobs, mode='delete')
 
 
 @app.route('/change_job/<id>', methods=['GET', 'POST'])
@@ -134,6 +144,13 @@ def change_job(id):
     return render_template('job_addition.html', title='Добавление работ',
                            form=form)
 
+
+@app.route('/delete_job/<id>')
+def delete_job(id):
+    db_sess = db_session.create_session()
+    db_sess.query(Job).filter(Job.id == id).delete()
+    db_sess.commit()
+    return redirect('/')
 
 
 @app.route('/login', methods=['GET', 'POST'])

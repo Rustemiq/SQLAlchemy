@@ -3,6 +3,10 @@
 {% block content %}
     <h1>Выберите работу для редактирования</h1>
     {% for job in jobs %}
-        <a class="btn btn-light" href="/change_job/{{job.id}}">id = {{job.id}}</a>
+        {% if mode == 'change' %}
+            <a class="btn btn-light" href="/change_job/{{job.id}}">id = {{job.id}}</a>
+        {% else %}
+            <a class="btn btn-light" href="/delete_job/{{job.id}}">id = {{job.id}}</a>
+        {% endif%}
     {% endfor %}
 {% endblock %}
