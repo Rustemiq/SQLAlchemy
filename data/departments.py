@@ -2,7 +2,7 @@ import sqlalchemy
 from .db_session import SqlAlchemyBase
 
 
-class Departament(SqlAlchemyBase):
+class Department(SqlAlchemyBase):
     __tablename__ = 'departaments'
 
     id = sqlalchemy.Column(sqlalchemy.Integer,
@@ -12,3 +12,4 @@ class Departament(SqlAlchemyBase):
     user = sqlalchemy.orm.relationship('User')
     members = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     email = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    creator = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
