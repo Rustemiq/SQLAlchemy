@@ -12,13 +12,16 @@
     <body>
         {% if current_user.is_authenticated %}
             <a>{{current_user.login}}</a></br>
-            <a class="navbar-brand" href="/logout">Выйти</a>
+            <a class="navbar-brand btn btn-primary" href="/logout">Выйти</a></br>
         {% else %}
             <p>
                 <a class="btn btn-primary " href="/register">Зарегистрироваться</a>
                 <a class="btn btn-success" href="/login">Войти</a>
             </p>
         {% endif %}
+        <a class="btn btn-light" href="/works_log">Список работ</a>
+        <a class="btn btn-light" href="/add_job">Добавить работу</a>
+        <a class="btn btn-light" href="/select_job">Изменить работу</a>
         <h1>Миссия Колонизация Марса</h1>
         <h4>И на Марсе будут яблони цвести!</h4>
         {% block content %}{% endblock %}

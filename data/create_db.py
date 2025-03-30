@@ -5,7 +5,7 @@ from data.jobs import Job
 
 db_sess = None
 def create_db():
-    db_sess = get_sess()
+    db_sess = db_session.create_session()
     user1 = User()
     user1.login = 'SRidley'
     user1.surname = 'Scott'
@@ -52,6 +52,7 @@ def create_db():
     job1.work_size = 15
     job1.collaborators = '2, 3'
     job1.is_finished = False
+    job1.creator = 1
 
     job2 = Job()
     job2.teamleader = 3
@@ -59,6 +60,7 @@ def create_db():
     job2.work_size = 5
     job2.collaborators = '1, 3'
     job2.is_finished = True
+    job2.creator = 3
 
     job3 = Job()
     job3.teamleader = 2
@@ -66,6 +68,7 @@ def create_db():
     job3.work_size = 30
     job3.collaborators = '2, 3'
     job3.is_finished = False
+    job3.creator = 4
 
     db_sess.add(user1)
     db_sess.add(user2)
@@ -76,10 +79,3 @@ def create_db():
     db_sess.add(job3)
 
     db_sess.commit()
-
-
-def get_sess():
-    db_name = 'mars_explorer.db'
-    db_session.global_init(f"db/{db_name}")
-    db_sess = db_session.create_session()
-    return db_sess

@@ -19,3 +19,4 @@ class Job(SqlAlchemyBase):
     end_date = sqlalchemy.Column(sqlalchemy.DateTime,
                                  default=datetime.datetime.now)
     is_finished = sqlalchemy.Column(sqlalchemy.Boolean, nullable=True)
+    creator = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)

@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Выберите работу для редактирования</h1>
+    {% for job in jobs %}
+        <a class="btn btn-light" href="/change_job/{{job.id}}">id = {{job.id}}</a>
+    {% endfor %}
+{% endblock %}
