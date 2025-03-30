@@ -9,3 +9,7 @@ h2, form {
 table {
     width: 700px
 }
+
+.btn-warning, .btn-secondary {
+    margin-left: 630px
+}

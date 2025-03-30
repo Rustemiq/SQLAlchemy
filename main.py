@@ -26,7 +26,11 @@ def load_user(user_id):
 def works_log():
     db_sess = db_session.create_session()
     jobs = db_sess.query(Job).all()
-    return render_template('works_log.html', jobs=jobs, current_user=current_user)
+    if current_user.is_authenticated:
+        editable_jobs = db_sess.query(Job).filter(Job.creator == current_user.id | current_user.id == 1)
+    else:
+        editable_jobs = []
+    return render_template('works_log.html', jobs=jobs, current_user=current_user, editable_jobs=editable_jobs)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -84,26 +88,6 @@ def add_job():
         db_sess.commit()
         return redirect('/works_log')
     return render_template('job_addition.html', title='Добавление работ', form=form)
-
-
-@app.route('/select_job_to_change', methods=['GET', 'POST'])
-def select_job_to_change():
-    if not current_user.is_authenticated:
-        available_jobs = []
-    else:
-        db_sess = db_session.create_session()
-        available_jobs = db_sess.query(Job).filter(Job.creator == current_user.id | current_user.id == 1)
-    return render_template('job_selection.html', title='Выбор работы', jobs=available_jobs, mode='change')
-
-
-@app.route('/select_job_to_del', methods=['GET', 'POST'])
-def select_job_to_del():
-    if not current_user.is_authenticated:
-        available_jobs = []
-    else:
-        db_sess = db_session.create_session()
-        available_jobs = db_sess.query(Job).filter(Job.creator == current_user.id | current_user.id == 1)
-    return render_template('job_selection.html', title='Выбор работы', jobs=available_jobs, mode='delete')
 
 
 @app.route('/change_job/<id>', methods=['GET', 'POST'])
