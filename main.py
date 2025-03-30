@@ -2,6 +2,7 @@ from data.create_db import create_db, get_sess
 from data import db_session
 from data.users import User
 from data.jobs import Job
+from forms.job_addition import AdditionForm
 from forms.user_registration import RegisterForm
 from forms.user_login import LoginForm
 
@@ -55,6 +56,28 @@ def reqister():
         db_sess.commit()
         return redirect('/login')
     return render_template('register.html', title='Регистрация', form=form)
+
+
+@app.route('/add_job', methods=['GET', 'POST'])
+def add_job():
+    form = AdditionForm()
+    if form.validate_on_submit():
+        db_sess = get_sess()
+        if db_sess.query(Job).filter(Job.job == form.job.data).first():
+            return render_template('register.html', title='Регистрация',
+                                   form=form,
+                                   message="Такая работа уже есть")
+        job = Job(
+            teamleader=form.teamleader.data,
+            job=form.job.data,
+            work_size=form.work_size.data,
+            collaborators=form.collaborators.data,
+            is_finished=form.is_finished.data,
+        )
+        db_sess.add(job)
+        db_sess.commit()
+        return redirect('/works_log')
+    return render_template('job_addition.html', title='Регистрация', form=form)
 
 
 @app.route('/login', methods=['GET', 'POST'])

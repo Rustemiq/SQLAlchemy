@@ -15,7 +15,6 @@ def create_db():
     user1.speciality = 'research engineer'
     user1.address = 'module_1'
     user1.email = 'scott_chief@mars.org'
-    user1.id = 1
 
     user2 = User()
     user2.login = 'Ivanov123'
@@ -26,7 +25,6 @@ def create_db():
     user2.speciality = 'medic'
     user2.address = 'module_2'
     user2.email = 'ivanich@mars.org'
-    user2.id = 2
 
     user3 = User()
     user3.login = 'PPetrov123'
@@ -37,10 +35,9 @@ def create_db():
     user3.speciality = 'architector'
     user3.address = 'module_1'
     user3.email = 'petrov@mars.org'
-    user3.id = 3
 
     user4 = User()
-    user3.login = 'fffedor'
+    user4.login = 'fffedor'
     user4.surname = 'Fedorov'
     user4.name = 'Fedor'
     user4.age = 20
@@ -48,7 +45,6 @@ def create_db():
     user4.speciality = 'engineer'
     user4.address = 'module_12'
     user4.email = 'fedooor@mars.org'
-    user4.id = 4
 
     job1 = Job()
     job1.teamleader = 1
@@ -56,7 +52,6 @@ def create_db():
     job1.work_size = 15
     job1.collaborators = '2, 3'
     job1.is_finished = False
-    job1.id = 1
 
     job2 = Job()
     job2.teamleader = 3
@@ -64,7 +59,6 @@ def create_db():
     job2.work_size = 5
     job2.collaborators = '1, 3'
     job2.is_finished = True
-    job2.id = 2
 
     job3 = Job()
     job3.teamleader = 2
@@ -72,7 +66,6 @@ def create_db():
     job3.work_size = 30
     job3.collaborators = '2, 3'
     job3.is_finished = False
-    job3.id = 3
 
     db_sess.add(user1)
     db_sess.add(user2)

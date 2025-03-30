@@ -11,7 +11,7 @@
     </head>
     <body>
         {% if current_user.is_authenticated %}
-            <a>{{ current_user }}</a></br>
+            <a>{{current_user.login}}</a></br>
             <a class="navbar-brand" href="/logout">Выйти</a>
         {% else %}
             <p>
