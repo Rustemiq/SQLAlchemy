@@ -63,8 +63,12 @@ def add_job():
     form = AdditionForm()
     if form.validate_on_submit():
         db_sess = get_sess()
+        if not current_user.is_authenticated:
+            return render_template('job_addition.html', title='Добавление работ',
+                                   form=form,
+                                   message="Авторизируйтесь чтобы добавить работу")
         if db_sess.query(Job).filter(Job.job == form.job.data).first():
-            return render_template('register.html', title='Регистрация',
+            return render_template('job_addition.html', title='Добавление работ',
                                    form=form,
                                    message="Такая работа уже есть")
         job = Job(
@@ -77,7 +81,7 @@ def add_job():
         db_sess.add(job)
         db_sess.commit()
         return redirect('/works_log')
-    return render_template('job_addition.html', title='Регистрация', form=form)
+    return render_template('job_addition.html', title='Добавление работ', form=form)
 
 
 @app.route('/login', methods=['GET', 'POST'])
