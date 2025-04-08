@@ -13,6 +13,7 @@
             <td width="200px"><p>Team leader<p></td>
             <td width="100px"><p>Duration<p></td>
             <td width="100px"><p>List of collaborators<p></td>
+            <td width="50px"><p>Hazard categories<p></td>
             <td width="100px"><p>is finished<p></td>
         </tr>
         <tr bgcolor="lightblue">
@@ -20,6 +21,11 @@
             <td><p>{{job.user.surname}} {{job.user.name}}<p></td>
             <td><p>{{job.work_size}} hours<p></td>
             <td><p>{{job.collaborators}}<p></td>
+            <td><p>
+                {% for category in job.categories %}
+                    {{category.id}} 
+                {% endfor %}
+                <p></td>
             {% if job.is_finished %}
             <td><p>is finished<p></td>
             {% else %}

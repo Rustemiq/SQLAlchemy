@@ -1,4 +1,5 @@
 from data import db_session
+from data.category import Category
 from data.departments import Department
 from data.users import User
 from data.jobs import Job
@@ -99,6 +100,9 @@ def add_job():
             is_finished=form.is_finished.data,
             creator=creator
         )
+        for category in form.categories.data.split(','):
+            job.categories.append(db_sess.query(Category).filter(Category.id == category).first())
+
         db_sess.add(job)
         db_sess.commit()
         return redirect('/works_log')

@@ -1,4 +1,5 @@
 from data import db_session
+from data.category import Category
 from data.departments import Department
 from data.users import User
 from data.jobs import Job
@@ -98,9 +99,28 @@ def create_db():
     department3.email = 'construc_dep.mars@mail'
     department3.creator = 3
 
+    category1 = Category()
+    category1.name = 'Category example 1'
+
+    category2 = Category()
+    category2.name = 'Category example 2'
+
+    category3 = Category()
+    category3.name = 'Category example 3'
+
+    job1.categories.append(category1)
+    job2.categories.append(category2)
+    job2.categories.append(category3)
+    job3.categories.append(category1)
+    job3.categories.append(category3)
+
     db_sess.add(department1)
     db_sess.add(department2)
     db_sess.add(department3)
+
+    db_sess.add(category1)
+    db_sess.add(category2)
+    db_sess.add(category3)
 
     db_sess.add(user1)
     db_sess.add(user2)

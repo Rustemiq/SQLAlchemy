@@ -20,3 +20,6 @@ class Job(SqlAlchemyBase):
                                  default=datetime.datetime.now)
     is_finished = sqlalchemy.Column(sqlalchemy.Boolean, nullable=True)
     creator = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
+    categories = sqlalchemy.orm.relationship("Category",
+                                  secondary="jobs_to_category",
+                                  backref="jobs")
