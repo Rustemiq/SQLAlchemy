@@ -8,8 +8,9 @@ from forms.job_addition import JobAdditionForm
 from forms.user_registration import RegisterForm
 from forms.user_login import LoginForm
 from data.create_db import create_db
+import data.jobs_api as jobs_api
 
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, make_response, jsonify
 from flask_login import login_user, LoginManager, current_user, login_required, logout_user
 
 app = Flask(__name__)
@@ -241,7 +242,22 @@ def logout():
     return redirect("/")
 
 
+@app.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify({'error': 'Not found'}), 404)
+
+
+@app.errorhandler(400)
+def bad_request(_):
+    return make_response(jsonify({'error': 'Bad Request'}), 400)
+
+
 if __name__ == '__main__':
     #create_db()
     db_session.global_init("db/mars_explorer.db")
+
+    db_sess = db_session.create_session()
+    job = db_sess.query(Job).filter(Job.id == 1).first()
+
+    app.register_blueprint(jobs_api.blueprint)
     app.run(port=8080, host='127.0.0.1')
