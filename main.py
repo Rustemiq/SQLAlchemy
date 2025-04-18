@@ -9,6 +9,7 @@ from forms.user_registration import RegisterForm
 from forms.user_login import LoginForm
 from data.create_db import create_db
 import data.jobs_api as jobs_api
+import data.users_api as users_api
 
 from flask import Flask, render_template, redirect, request, make_response, jsonify
 from flask_login import login_user, LoginManager, current_user, login_required, logout_user
@@ -260,4 +261,6 @@ if __name__ == '__main__':
     job = db_sess.query(Job).filter(Job.id == 1).first()
 
     app.register_blueprint(jobs_api.blueprint)
+    app.register_blueprint(users_api.blueprint)
+
     app.run(port=8080, host='127.0.0.1')
