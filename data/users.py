@@ -17,6 +17,7 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
     age = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     position = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     speciality = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    city_from = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     address = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     modified_date = sqlalchemy.Column(sqlalchemy.DateTime,

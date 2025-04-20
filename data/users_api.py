@@ -31,6 +31,7 @@ def get_users():
                         'speciality',
                         'address',
                         'modified_date',
+                        'city_from'
                     )
                 )
                  for item in users]
@@ -59,6 +60,7 @@ def get_user(user_id):
                         'speciality',
                         'address',
                         'modified_date',
+                        'city_from'
                         )
                     )
             ]

@@ -11,8 +11,11 @@ from data.create_db import create_db
 import data.jobs_api as jobs_api
 import data.users_api as users_api
 
-from flask import Flask, render_template, redirect, request, make_response, jsonify
+from data.maps_api import get_city_map
+
+from flask import Flask, render_template, redirect, request, make_response, jsonify, url_for
 from flask_login import login_user, LoginManager, current_user, login_required, logout_user
+from requests import get
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -36,6 +39,18 @@ def works_log():
     else:
         editable_jobs = []
     return render_template('works_log.html', jobs=jobs, current_user=current_user, editable_jobs=editable_jobs)
+
+
+@app.route('/users_show/<int:user_id>')
+def users_show(user_id):
+    user = get(f'http://127.0.0.1:8080/api/users/{user_id}').json()['users'][0]
+    city = user['city_from']
+    name = user['name']
+    city_img = get_city_map(city)
+    with open('static/img/city.png', "wb") as file:
+        file.write(city_img)
+    url = url_for('static', filename='img/city.png')
+    return render_template('users_show.html', city=city, name=name, url=url)
 
 
 @app.route('/')

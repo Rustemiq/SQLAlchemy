@@ -20,6 +20,7 @@ def create_db():
     user1.address = 'module_1'
     user1.email = 'scott_chief@mars.org'
     user1.set_password('12345')
+    user1.city_from = 'Moscow'
 
     user2 = User()
     user2.login = 'Ivanov123'
@@ -31,6 +32,7 @@ def create_db():
     user2.address = 'module_2'
     user2.email = 'ivanich@mars.org'
     user2.set_password('12345')
+    user2.city_from = 'Ufa'
 
     user3 = User()
     user3.login = 'PPetrov123'
@@ -42,6 +44,7 @@ def create_db():
     user3.address = 'module_1'
     user3.email = 'petrov@mars.org'
     user3.set_password('12345')
+    user3.city_from = 'Kazan'
 
     user4 = User()
     user4.login = 'fffedor'
@@ -53,6 +56,7 @@ def create_db():
     user4.address = 'module_12'
     user4.email = 'fedooor@mars.org'
     user4.set_password('12345')
+    user4.city_from = 'Novosibirsk'
 
     job1 = Job()
     job1.teamleader = 1
